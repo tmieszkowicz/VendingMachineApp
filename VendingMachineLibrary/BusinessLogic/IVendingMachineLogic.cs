@@ -11,13 +11,13 @@ internal interface IVendingMachineLogic
 	void RequestMoneyRefund();
 	decimal GetTotalInsertedMoney();
 
-	void AddItemsToInventory(List<ItemModel> items);
-	List<ItemModel> RemoveItemsFromInventory();
+	void AddToItemInventory(List<ItemModel> items);
+	List<ItemModel> RemoveFromItemInventory();
 
-	void AddMoneyToInventory(List<MoneyModel> money);
-	decimal RemoveMoneyFromInventory();
+	void AddToMoneyInventory(List<MoneyModel> money);
+	decimal RemoveFromMoneyInventory();
 
-	List<ItemModel> GetInventory();
+	List<ItemModel> GetItemInventory();
 	List<MoneyModel> GetMoneyInventory();
 
 	void GetCurrentIncome();
