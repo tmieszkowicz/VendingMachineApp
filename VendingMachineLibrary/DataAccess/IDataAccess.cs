@@ -2,7 +2,7 @@
 
 namespace VendingMachineLibrary.DataAccess;
 
-internal interface IDataAccess
+public interface IDataAccess
 {
 	ItemModel ItemInventory_GetItem(ItemModel item);
 	List<ItemModel> ItemInventory_GetDistinctTypes();
