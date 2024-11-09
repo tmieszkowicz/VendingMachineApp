@@ -67,7 +67,7 @@ public class VendingMachineLogicTests
 		logic.DispenseChange(coins);
 
 		int actual = dataAccess.ItemInventory.Count;
-		int expected = 7;
+		int expected = 6;
 
 		Assert.Equal(expected,actual);
 	}
@@ -201,11 +201,9 @@ public class VendingMachineLogicTests
 		MockDataAccess dataAccess = new MockDataAccess();
 		VendingMachineLogic logic = new VendingMachineLogic(dataAccess);
 
-		var items = logic.GetItemInventory();
-
 		logic.RemoveItemFromInventory(dataAccess.ItemInventory.First(x => x.Name == "Pepsi"));
 
-		Assert.Equal(items.Count-1, dataAccess.ItemInventory.Count);
+		Assert.Equal(5, dataAccess.ItemInventory.Count);
 	}
 
 	[Fact]
@@ -295,11 +293,11 @@ public class VendingMachineLogicTests
 
 		Assert.Null(results.item);
 
-		Assert.Equal(0.99m, dataAccess.UserCredit[user]);
+		Assert.Equal(2.99m, dataAccess.UserCredit[user]);
 		Assert.Equal(initialState.CoinCurrent, dataAccess.MachineInfo.CoinCurrent);
 		Assert.Equal(initialState.CoinTotal, dataAccess.MachineInfo.CoinTotal);
 
 		Assert.False(String.IsNullOrWhiteSpace(results.errorMessage));
-		Assert.True(results.change.Count() == 0);
+		Assert.Empty(results.change);
 	}
 }

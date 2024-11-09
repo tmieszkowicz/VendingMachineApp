@@ -3,6 +3,8 @@
 using System.Collections.Generic;
 using VendingMachineLibrary.DataAccess;
 using VendingMachineLibrary.Models;
+using Xunit.Abstractions;
+
 public class MockDataAccess : IDataAccess
 {
 	public List<CoinModel> CoinInventory { get; set; } = new List<CoinModel>();
@@ -76,7 +78,7 @@ public class MockDataAccess : IDataAccess
 
 	public ItemModel ItemInventory_GetItem(ItemModel item)
 	{
-		return ItemInventory.Where(x => x.Name == item.Name).FirstOrDefault();
+		return ItemInventory.FirstOrDefault(x => x.Name == item.Name && x.Slot == item.Slot);
 	}
 
 	public void ItemInventory_RemoveItems(List<ItemModel> items)
@@ -114,16 +116,40 @@ public class MockDataAccess : IDataAccess
 
 	public decimal UserCoin_Balance(string userId)
 	{
-		return UserCoin_Balance(userId);
+		return UserCredit.ContainsKey(userId) ? UserCredit[userId] : 0;
 	}
 
 	public decimal UserCoin_Deposit(string userId, decimal coinValue)
 	{
-		return UserCoin_Deposit(userId,coinValue);
+		if (UserCredit.ContainsKey(userId))
+		{
+			UserCredit[userId] += coinValue;
+		}
+		else
+		{
+			UserCredit[userId] = coinValue;
+		}
+
+		return UserCredit[userId];
 	}
 
 	public void UserCoin_Reset(string userId)
 	{
-		UserCoin_Reset(userId);
+		if (UserCredit.ContainsKey(userId))
+		{
+			UserCredit[userId] = 0;
+		}
+	}
+
+	public void Coinnventory_RemoveCoins(List<CoinModel> coins)
+	{
+		foreach (var coin in coins)
+		{
+			var coinToRemove = CoinInventory.FirstOrDefault(x => x.Name == coin.Name && x.Value == coin.Value);
+			if (coinToRemove != null)
+			{
+				CoinInventory.Remove(coinToRemove);
+			}
+		}
 	}
 }
