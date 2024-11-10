@@ -1,6 +1,7 @@
 ﻿namespace VendingMachineLibrary.Tests.Mocks;
 
 using System.Collections.Generic;
+using System.ComponentModel;
 using VendingMachineLibrary.DataAccess;
 using VendingMachineLibrary.Models;
 using Xunit.Abstractions;
@@ -24,7 +25,7 @@ public class MockDataAccess : IDataAccess
 		CoinInventory.Add(new CoinModel { Name = "Dollar", Value = 0.50m });
 		CoinInventory.Add(new CoinModel { Name = "Dollar", Value = 0.50m });
 
-		MachineInfo = (22.50m, 210.10m);
+		MachineInfo = (0m, 210.10m);
 
 		ItemInventory.Add(new ItemModel { Name = "Pepsi", Price = 1.99m, Slot = "1" });
 		ItemInventory.Add(new ItemModel { Name = "Pepsi", Price = 1.99m, Slot = "1" });
@@ -151,5 +152,16 @@ public class MockDataAccess : IDataAccess
 				CoinInventory.Remove(coinToRemove);
 			}
 		}
+	}
+
+	public void MachineInfo_AddIncome(decimal income)
+	{
+		var currentMachineInfo = MachineInfo;
+		decimal currentCoins = currentMachineInfo.CoinCurrent;
+		decimal totalCoins = currentMachineInfo.CoinTotal;
+
+		currentMachineInfo.CoinCurrent += income;
+		currentMachineInfo.CoinTotal += income;
+		MachineInfo = currentMachineInfo;
 	}
 }

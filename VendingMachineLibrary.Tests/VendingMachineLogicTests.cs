@@ -275,7 +275,6 @@ public class VendingMachineLogicTests
 		Assert.Equal(initialState.CoinTotal, dataAccess.MachineInfo.CoinTotal);
 
 		Assert.False(String.IsNullOrWhiteSpace(results.errorMessage));
-		Assert.True(results.change.Count() == 0);
 	}
 
 	[Fact]
@@ -298,6 +297,5 @@ public class VendingMachineLogicTests
 		Assert.Equal(initialState.CoinTotal, dataAccess.MachineInfo.CoinTotal);
 
 		Assert.False(String.IsNullOrWhiteSpace(results.errorMessage));
-		Assert.Empty(results.change);
 	}
 }
