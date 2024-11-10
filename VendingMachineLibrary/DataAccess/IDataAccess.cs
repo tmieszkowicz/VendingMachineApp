@@ -24,4 +24,5 @@ public interface IDataAccess
 	decimal MachineInfo_EmptyCoins();
 	decimal MachineInfo_CurrentCoins();
 	decimal MachineInfo_TotalCoins();
+	void MachineInfo_AddIncome(decimal income);
 }
