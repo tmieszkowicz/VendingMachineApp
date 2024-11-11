@@ -65,7 +65,7 @@ public class VendingMachineLogic : IVendingMachineLogic
 				throw new InvalidOperationException($"Insufficient coins of denomination {coin.Value}");
 			}
 
-			_dataAccess.Coinnventory_RemoveCoins(coinsToRemove);
+			_dataAccess.CoinInventory_RemoveCoins(coinsToRemove);
 		}
 	}
 

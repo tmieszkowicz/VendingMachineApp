@@ -14,7 +14,7 @@ public interface IDataAccess
 	List<CoinModel> CoinInventory_GetSpecificDenomination(decimal CoinValue, int quantity = 1);
 	List<CoinModel> CoinInventory_GetAll();
 	void CoinInventory_AddCoin(List<CoinModel> coins);
-	void Coinnventory_RemoveCoins(List<CoinModel> coins);
+	void CoinInventory_RemoveCoins(List<CoinModel> coins);
 	void CoinInventory_Clear();
 
 	decimal UserCoin_Balance(string userId);

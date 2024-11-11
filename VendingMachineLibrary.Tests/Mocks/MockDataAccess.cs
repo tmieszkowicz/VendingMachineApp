@@ -142,7 +142,7 @@ public class MockDataAccess : IDataAccess
 		}
 	}
 
-	public void Coinnventory_RemoveCoins(List<CoinModel> coins)
+	public void CoinInventory_RemoveCoins(List<CoinModel> coins)
 	{
 		foreach (var coin in coins)
 		{
