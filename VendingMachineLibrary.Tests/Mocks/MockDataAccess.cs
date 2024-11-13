@@ -54,7 +54,10 @@ public class MockDataAccess : IDataAccess
 
 	public List<CoinModel> CoinInventory_GetSpecificDenomination(decimal coinValue, int quantity)
 	{
-		return CoinInventory.Where(x => x.Value == coinValue).Take(quantity).ToList();
+		var coins = CoinInventory.Where(x => x.Value == coinValue).Take(quantity).ToList();
+		coins.ForEach(x => CoinInventory.Remove(x));
+
+		return coins;
 	}
 
 	public void ItemInventory_AddItems(List<ItemModel> items)
