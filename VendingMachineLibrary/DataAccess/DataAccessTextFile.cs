@@ -9,7 +9,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VendingMachineLibrary.DataAccess;
 
-internal class DataAccessTextFile : IDataAccess
+public class DataAccessTextFile : IDataAccess
 {
 	private readonly IConfiguration _config;
 	private string coinTextFile;
