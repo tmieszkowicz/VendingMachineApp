@@ -2,7 +2,7 @@
 
 namespace VendingMachineLibrary.BusinessLogic;
 
-internal interface IVendingMachineLogic
+public interface IVendingMachineLogic
 {
 	void AddToItemInventory(List<ItemModel> items);
 	List<ItemModel> GetItemInventory();
