@@ -1,0 +1,30 @@
+﻿Penny;0.01
+Penny;0.01
+Penny;0.01
+Penny;0.01
+Penny;0.01
+Penny;0.01
+Penny;0.01
+Nickle;0.05
+Nickle;0.05
+Nickle;0.05
+Nickle;0.05
+Nickle;0.05
+Nickle;0.05
+Nickle;0.05
+Nickle;0.05
+Nickle;0.05
+Nickle;0.05
+Dime;0.10
+Dime;0.10
+Dime;0.10
+Dime;0.10
+Dime;0.10
+Dime;0.10
+Dime;0.10
+Dime;0.10
+Quarter;0.25
+Quarter;0.25
+Quarter;0.25
+Half Dollar; 0.50
+Half Dollar; 0.50

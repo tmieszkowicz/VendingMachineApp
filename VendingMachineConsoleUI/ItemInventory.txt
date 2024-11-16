@@ -1,0 +1,9 @@
+﻿Pepsi;1.99;1
+Pepsi;1.99;1
+Pepsi;1.99;1
+Diet Pepsi;2.49;2
+Diet Pepsi;2.49;2
+Sprite;1.79;3
+Sprite;1.79;3
+Sprite;1.79;3
+Sprite;1.79;3
