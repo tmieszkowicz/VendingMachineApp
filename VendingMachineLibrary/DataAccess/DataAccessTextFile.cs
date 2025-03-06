@@ -1,11 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Net;
-using System.Reflection.Metadata.Ecma335;
+﻿using System.Globalization;
+using Microsoft.Extensions.Configuration;
 using VendingMachineLibrary.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VendingMachineLibrary.DataAccess;
 
@@ -16,7 +11,7 @@ public class DataAccessTextFile : IDataAccess
 	private string itemTextFile;
 	private string machineInfoTextFile;
 	private string userInfoTextFile;
-	private const char DELIMITER = '|';
+	private const char DELIMITER = ';';
 
 	public DataAccessTextFile(IConfiguration config)
     {

@@ -36,12 +36,12 @@ public class VendingMachineLogic : IVendingMachineLogic
 
 		foreach (var coin in coinInventory)
 		{
-			while (changeAmount >= coin.Value && coinInventory.Any(c => c.Value == coin.Value))
+
+			while (changeAmount >= coin.Value)
 			{
-				change.Add(coin);
-				changeAmount -= coin.Value;
+                change.Add(new CoinModel { Name = coin.Name, Value = coin.Value });
+                changeAmount -= coin.Value;
 				changeAmount = Math.Round(changeAmount, 2); // To handle floating-point precision issues
-				coinInventory.Remove(coin);
 			}
 
 			if (changeAmount == 0) break;
@@ -177,7 +177,7 @@ public class VendingMachineLogic : IVendingMachineLogic
 		{
 			var change = CalculateChange(userBalance, item.Price);
 
-			_dataAccess.ItemInventory_RemoveItems(new List<ItemModel> { inventoryItem });
+            _dataAccess.ItemInventory_RemoveItems(new List<ItemModel> { inventoryItem });
 			_dataAccess.UserCoin_Reset(userId);
 			_dataAccess.MachineInfo_AddIncome(item.Price);
 
