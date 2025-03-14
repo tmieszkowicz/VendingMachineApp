@@ -18,11 +18,11 @@ public interface IVendingMachineLogic
 	void DispenseChange(List<CoinModel> change);
 	List<CoinModel> CalculateChange(decimal totalInserted, decimal itemPrice);
 
-	(ItemModel item, List<CoinModel> change, string errorMessage) RequestItem(ItemModel item, string userId);
+	(ItemModel item, List<CoinModel> change, string errorMessage) RequestItem(ItemModel item, Guid userId);
 
-	void InsertCoin(string userId, decimal amount);
-	void RequestCoinRefund(string userId);
-	decimal GetTotalInsertedCoin(string userId);
+	void InsertCoin(Guid userId, decimal amount);
+	void RequestCoinRefund(Guid userId);
+	decimal GetTotalInsertedCoin(Guid userId);
 
 	decimal GetCurrentIncome();
 	decimal GetTotalIncome();

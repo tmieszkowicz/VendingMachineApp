@@ -8,6 +8,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\CoinInventory.txt" />
+    <Content Remove="wwwroot\ItemInventory.txt" />
+    <Content Remove="wwwroot\MachineInfo.txt" />
+    <Content Remove="wwwroot\UserInfo.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\data\CoinInventory.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\data\ItemInventory.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\data\MachineInfo.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\data\UserInfo.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="9.0.0" />

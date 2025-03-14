@@ -129,12 +129,12 @@ public class VendingMachineLogic : IVendingMachineLogic
 		return _dataAccess.MachineInfo_TotalCoins();
 	}
 
-	public decimal GetTotalInsertedCoin(string userId)
+	public decimal GetTotalInsertedCoin(Guid userId)
 	{
 		return _dataAccess.UserCoin_Balance(userId);
 	}
 
-	public void InsertCoin(string userId, decimal amount)
+	public void InsertCoin(Guid userId, decimal amount)
 	{
 		_dataAccess.UserCoin_Deposit(userId, amount);
 	}
@@ -154,12 +154,12 @@ public class VendingMachineLogic : IVendingMachineLogic
 		_dataAccess.ItemInventory_Clear();
 	}
 
-	public void RequestCoinRefund(string userId)
+	public void RequestCoinRefund(Guid userId)
 	{
 		_dataAccess.UserCoin_Reset(userId);
 	}
 
-	public (ItemModel item, List<CoinModel> change, string errorMessage) RequestItem(ItemModel item, string userId)
+	public (ItemModel item, List<CoinModel> change, string errorMessage) RequestItem(ItemModel item, Guid userId)
 	{
 		var userBalance = _dataAccess.UserCoin_Balance(userId);
 		if (userBalance < item.Price)

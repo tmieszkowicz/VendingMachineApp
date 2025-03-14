@@ -17,9 +17,9 @@ public interface IDataAccess
 	void CoinInventory_RemoveCoins(List<CoinModel> coins);
 	void CoinInventory_Clear();
 
-	decimal UserCoin_Balance(string userId);
-	void UserCoin_Reset(string userId);
-	decimal UserCoin_Deposit(string userId, decimal CoinValue);
+	decimal UserCoin_Balance(Guid userId);
+	void UserCoin_Reset(Guid userId);
+	decimal UserCoin_Deposit(Guid userId, decimal CoinValue);
 
 	decimal MachineInfo_EmptyCoins();
 	decimal MachineInfo_CurrentCoins();

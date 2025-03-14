@@ -118,30 +118,36 @@ public class MockDataAccess : IDataAccess
 		return MachineInfo.CoinTotal;
 	}
 
-	public decimal UserCoin_Balance(string userId)
+	public decimal UserCoin_Balance(Guid userId)
 	{
-		return UserCredit.ContainsKey(userId) ? UserCredit[userId] : 0;
+        string userKey = userId.ToString();
+
+        return UserCredit.ContainsKey(userKey) ? UserCredit[userKey] : 0;
 	}
 
-	public decimal UserCoin_Deposit(string userId, decimal coinValue)
+	public decimal UserCoin_Deposit(Guid userId, decimal coinValue)
 	{
-		if (UserCredit.ContainsKey(userId))
+        string userKey = userId.ToString();
+
+        if (UserCredit.ContainsKey(userKey))
 		{
-			UserCredit[userId] += coinValue;
+			UserCredit[userKey] += coinValue;
 		}
 		else
 		{
-			UserCredit[userId] = coinValue;
+			UserCredit[userKey] = coinValue;
 		}
 
-		return UserCredit[userId];
+		return UserCredit[userKey];
 	}
 
-	public void UserCoin_Reset(string userId)
+	public void UserCoin_Reset(Guid userId)
 	{
-		if (UserCredit.ContainsKey(userId))
+        string userKey = userId.ToString();
+
+        if (UserCredit.ContainsKey(userKey))
 		{
-			UserCredit[userId] = 0;
+			UserCredit[userKey] = 0;
 		}
 	}
 

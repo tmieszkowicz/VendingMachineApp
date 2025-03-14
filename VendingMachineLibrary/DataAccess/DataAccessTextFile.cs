@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Microsoft.Extensions.Configuration;
 using VendingMachineLibrary.Models;
 
@@ -126,15 +127,15 @@ public class DataAccessTextFile : IDataAccess
 
 		return result;
 	}
-	private void SaveUserInfo(string userId, decimal credit)
+	private void SaveUserInfo(Guid userId, decimal credit)
 	{
 		try
 		{
 			var lines = File.ReadAllLines(userInfoTextFile).ToList();
 
-			var existingLine = lines.FirstOrDefault(line => line.StartsWith(userId + DELIMITER));
+            var existingLine = lines.FirstOrDefault(line => line.StartsWith(userId.ToString() + DELIMITER));
 
-			if (existingLine != null)
+            if (existingLine != null)
 			{
 				lines[lines.IndexOf(existingLine)] = $"{userId}{DELIMITER}{credit}";
 			}
@@ -348,16 +349,17 @@ public class DataAccessTextFile : IDataAccess
 
 		return info.coinTotal;
 	}
-	public decimal UserCoin_Balance(string userId)
+	public decimal UserCoin_Balance(Guid userId)
 	{
 		Dictionary<string, decimal> userInfo = RetrieveUserInfo();
 
-		if(userInfo.TryGetValue(userId, out var balance))
+		if(userInfo.TryGetValue(userId.ToString(), out var balance))
 			return balance;
 
-		throw new Exception("User not found.");
+        SaveUserInfo(userId, 0m);
+		return 0m;
 	}
-	public decimal UserCoin_Deposit(string userId, decimal coinValue)
+	public decimal UserCoin_Deposit(Guid userId, decimal coinValue)
 	{
 		Dictionary<string, decimal> userInfo = RetrieveUserInfo();
 
@@ -369,7 +371,7 @@ public class DataAccessTextFile : IDataAccess
 
 		throw new Exception("User not found.");
 	}
-	public void UserCoin_Reset(string userId)
+	public void UserCoin_Reset(Guid userId)
 	{
 		SaveUserInfo(userId, 0);
 	}

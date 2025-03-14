@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using VendingMachineLibrary.BusinessLogic;
+using VendingMachineLibrary.DataAccess;
 using VendingMachineRazerUI.Data;
 
 namespace VendingMachineRazerUI
@@ -15,6 +17,9 @@ namespace VendingMachineRazerUI
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+            builder.Services.AddTransient<IDataAccess, DataAccessTextFile>();
+            builder.Services.AddTransient<IVendingMachineLogic, VendingMachineLogic>();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();

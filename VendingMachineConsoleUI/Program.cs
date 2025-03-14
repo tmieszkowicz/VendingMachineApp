@@ -11,7 +11,7 @@ internal class Program
 {
 	private static IServiceProvider _serviceProvider;
 	private static IVendingMachineLogic _vendingMachine;
-	private static string userId;
+	private static Guid userId;
 
 	private static void Main(string[] args)
 	{
@@ -20,7 +20,7 @@ internal class Program
 		string selected = string.Empty;
 
 		_vendingMachine = _serviceProvider.GetService<IVendingMachineLogic>();
-		userId = new Guid().ToString();
+		userId = new Guid();
 
 		do
 		{
