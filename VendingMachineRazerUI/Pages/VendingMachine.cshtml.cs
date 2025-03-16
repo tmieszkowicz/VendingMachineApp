@@ -34,7 +34,7 @@ public class VendingMachineModel : PageModel
             UserId = Guid.NewGuid();
         }
 
-        Deposit = _vendingMachine.GetTotalInsertedCoin(UserId);
+        DepositedAmount = _vendingMachine.GetTotalInsertedCoin(UserId);
         Items = _vendingMachine.GetItemInventory().GroupBy(x => x.Name).Select(x => x.First()).ToList();
     }
 

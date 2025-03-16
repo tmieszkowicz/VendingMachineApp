@@ -1,31 +1,102 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  margin-bottom: 60px;
+    background: #1e1e1e;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    padding: 20px;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+h1, h3 {
+    font-size: 2rem;
+    color: #0ff;
+    text-transform: uppercase;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+h5 {
+    font-size: 1rem;
+    color: #bbb;
+    margin-bottom: 20px;
+}
+
+.error {
+    background-color: #ff0044;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.item-tab {
+    background: #333;
+    border: 2px solid #0ff;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
+.btn-item form {
+    margin-top: 10px;
+}
+
+.btn-depo, .btn-eject {
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-depo {
+    background-color: #0ff;
+    color: #1e1e1e;
+}
+
+    .btn-depo:hover {
+        background-color: #00b3b3;
+    }
+
+.btn-eject {
+    background-color: #ff0044;
+    color: #fff;
+}
+
+    .btn-eject:hover {
+        background-color: #cc0033;
+    }
+
+.btn-group button {
+    background-color: #555;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .btn-group button:hover {
+        background-color: #0ff;
+    }
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.col-sm-8 {
+    width: 65%;
+}
+
+.col-sm-4 {
+    width: 30%;
+    background-color: #222;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid #0ff;
+    text-align: center;
 }

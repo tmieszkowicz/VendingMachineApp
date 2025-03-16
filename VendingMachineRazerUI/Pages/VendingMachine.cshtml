@@ -1,4 +1,71 @@
 ﻿@page
 @model VendingMachineRazerUI.Pages.VendingMachineModel
 @{
+	ViewData["Title"] = "VendingMachine";
 }
+
+<h1>Vending Machine</h1>
+<h5>Deposited Amount : @String.Format("{0:C}",Model.DepositedAmount)</h5>
+
+@if(String.IsNullOrWhiteSpace(Model.ErrorMessage) == false)
+{
+	<p class="error">
+		@Model.ErrorMessage
+	</p>
+}
+
+<div class="row">
+	<div class="col-sm-8">
+		@foreach (var item in Model.Items)
+		{
+			<div class="row">
+				<div class="col-sm-8 item-tab">
+					@item.Name @String.Format("{0:C}",item.Price)
+				</div>
+				<div class="col-sm-4 btn-item">
+					<form method="post" asp-page-handler="Item">
+						<input type="hidden" asp-for="UserId" />
+						<input type="hidden" asp-for="SelectedItem.Name" value="@item.Name" />
+						<input type="hidden" asp-for="SelectedItem.Price" value="@item.Price" />
+						<input type="hidden" asp-for="SelectedItem.Slot" value="@item.Slot" />
+						<button type="submit" class="btn btn-depo">Buy</button>
+					</form>
+				</div>
+			</div>
+		}
+	</div>
+	<div class="col-sm-4">
+		@Html.Raw(Model.OutputText)
+	</div>
+</div>
+
+<div class ="row">
+	<div class="col-sm-4">
+		<h3>Deposit coins</h3>
+		<div class="btn-group" role="group">
+			<form method="post">
+				<input type="hidden" asp-for="UserId"/>
+				<input type="hidden" asp-for="Deposit" value="0,10"/>
+				<button type="submit" class="btn btn-depo">@String.Format("{0:C}",0.10)</button>
+			</form>
+				<form method="post">
+				<input type="hidden" asp-for="UserId"/>
+				<input type="hidden" asp-for="Deposit" value="0,50"/>
+				<button type="submit" class="btn btn-depo">@String.Format("{0:C}", 0.50)</button>
+			</form>
+				<form method="post">
+				<input type="hidden" asp-for="UserId" />
+				<input type="hidden" asp-for="Deposit" value="1,00" />
+				<button type="submit" class="btn btn-depo">@String.Format("{0:C}", 1.00)</button>
+			</form>
+		</div>
+	</div>
+
+	<div class="col-sm-4">
+		<h3>Cancel transaction</h3>
+		<form method="post" asp-page-handler="Cancel">
+			<input type="hidden" asp-for="UserId" />
+			<button type="submit" class="btn btn-eject">Eject money</button>
+		</form>
+	</div>
+</div>

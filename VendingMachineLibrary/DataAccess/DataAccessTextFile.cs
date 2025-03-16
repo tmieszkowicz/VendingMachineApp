@@ -209,7 +209,7 @@ public class DataAccessTextFile : IDataAccess
 	{
 		try
 		{
-			File.AppendAllLines(itemTextFile, items.Select(x => $"{x.Name}{DELIMITER}{x.Price}{DELIMITER}{x.Slot}"));
+			File.WriteAllLines(itemTextFile, items.Select(x => $"{x.Name}{DELIMITER}{x.Price}{DELIMITER}{x.Slot}"));
 		}
 		catch (IOException ex)
 		{

@@ -1,4 +1,4 @@
-﻿Pepsi;1,99;1
+Pepsi;1,99;1
 Pepsi;1,99;1
 Pepsi;1,99;1
 Diet Pepsi;2,49;2
