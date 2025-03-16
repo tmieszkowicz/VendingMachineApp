@@ -22,7 +22,9 @@ namespace VendingMachineRazerUI
             builder.Services.AddTransient<IVendingMachineLogic, VendingMachineLogic>();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             builder.Services.AddRazorPages();
 
             var app = builder.Build();

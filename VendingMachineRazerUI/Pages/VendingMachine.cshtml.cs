@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using VendingMachineLibrary.BusinessLogic;
@@ -5,6 +7,7 @@ using VendingMachineLibrary.Models;
 
 namespace VendingMachineRazerUI.Pages;
 
+[Authorize]
 public class VendingMachineModel : PageModel
 {
     private readonly IVendingMachineLogic _vendingMachine;
@@ -16,7 +19,6 @@ public class VendingMachineModel : PageModel
     [BindProperty]
     public ItemModel SelectedItem { get; set; }
 
-    [BindProperty(SupportsGet = true)]
     public Guid UserId { get; set; }
     [BindProperty(SupportsGet = true)]
     public string OutputText { get; set; }
@@ -29,10 +31,7 @@ public class VendingMachineModel : PageModel
     }
     public void OnGet()
     {
-        if (UserId == Guid.Empty)
-        {
-            UserId = Guid.NewGuid();
-        }
+        SetUserIdFromClaim();
 
         DepositedAmount = _vendingMachine.GetTotalInsertedCoin(UserId);
         Items = _vendingMachine.GetItemInventory().GroupBy(x => x.Name).Select(x => x.First()).ToList();
@@ -40,15 +39,19 @@ public class VendingMachineModel : PageModel
 
     public IActionResult OnPost()
     {
+        SetUserIdFromClaim();
+
         if (Deposit > 0)
         {
             _vendingMachine.InsertCoin(UserId, Deposit);
         }
 
-        return RedirectToPage(new { UserId });
+        return RedirectToPage();
     }
     public IActionResult OnPostItem()
     {
+        SetUserIdFromClaim();
+
         var results = _vendingMachine.RequestItem(SelectedItem, UserId);
         OutputText = string.Empty;
 
@@ -71,7 +74,7 @@ public class VendingMachineModel : PageModel
             }
         }
 
-        return RedirectToPage(new { UserId, ErrorMessage, OutputText });
+        return RedirectToPage(new { ErrorMessage, OutputText });
     }
     public IActionResult OnPostCancel()
     {
@@ -80,6 +83,15 @@ public class VendingMachineModel : PageModel
 
         OutputText = $"You refunded {DepositedAmount,0:C}";
 
-        return RedirectToPage(new { UserId, OutputText });
+        return RedirectToPage(new { OutputText });
+    }
+    void SetUserIdFromClaim()
+    {
+        var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (Guid.TryParse(userIdString, out var userId))
+        {
+            UserId = userId;
+        }
     }
 }
