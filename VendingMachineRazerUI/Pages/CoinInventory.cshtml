@@ -1,0 +1,46 @@
+﻿@page
+@model VendingMachineRazerUI.Pages.CoinInventoryModel
+@{
+	ViewData["Title"] = "CoinInventory";
+}
+
+<h1>Coin inventory</h1>
+
+<div class="row">
+	<div class="col-6">
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>Name</tr>
+				<tr>Amount</tr>
+			</thead>
+			<tbody>
+				@foreach(var coin in Model.Coins){
+					<tr>
+						<td>@coin.Name</td>
+						<td>@coin.Value</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+	<div class="col-6">
+		<form method="post">
+			<input type="hidden" asp-for="CoinToAdd.Name" value="1 Grosz" />
+			<input type="hidden" asp-for="CoinToAdd.Value" value="0,10" />
+			<button type ="submit" class="btn btn-primary">Add [1 Grosz] to inventory</button>
+		</form>
+		</br>
+		<form method="post">
+			<input type="hidden" asp-for="CoinToAdd.Name" value="10 Groszy" />
+			<input type="hidden" asp-for="CoinToAdd.Value" value="0,10" />
+			<button type="submit" class="btn btn-primary">Add [10 Groszy] to inventory</button>
+		</form>
+		</br>
+		<form method="post">
+			<input type="hidden" asp-for="CoinToAdd.Name" value="1 Złoty" />
+			<input type="hidden" asp-for="CoinToAdd.Value" value="1,00" />
+			<button type="submit" class="btn btn-primary">Add [1 Złoty] to inventory</button>
+		</form>
+		</br>
+	</div>
+</div>

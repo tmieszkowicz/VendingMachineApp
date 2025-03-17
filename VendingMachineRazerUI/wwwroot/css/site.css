@@ -1,102 +1,144 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+    --primary-color: #0071e3;
+    --secondary-color: #f5f5f7;
+    --text-color: #1d1d1f;
+    --error-color: #ff3b30;
+    --success-color: #34c759;
+    --border-radius: 8px;
+    --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 body {
-    background: #1e1e1e;
-    font-family: 'Arial', sans-serif;
-    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-color);
+    background-color: #ffffff;
+    line-height: 1.5;
+    margin: 0;
     padding: 20px;
 }
 
-h1, h3 {
-    font-size: 2rem;
-    color: #0ff;
-    text-transform: uppercase;
+h1 {
+    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 10px;
 }
 
-h5 {
-    font-size: 1rem;
-    color: #bbb;
+h3, h5 {
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px 20px -10px;
+}
+
+.col-sm-4, .col-sm-8 {
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.col-sm-4 {
+    width: 33.33%;
+}
+
+.col-sm-8 {
+    width: 66.67%;
+}
+
+.item-tab {
+    background-color: var(--secondary-color);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+    .item-tab:hover {
+        background-color: #e8e8eb;
+    }
+
+.btn-item {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.btn {
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-align: center;
+    white-space: nowrap;
+    margin: 0 5px;
+}
+
+.btn-depo {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+    .btn-depo:hover {
+        background-color: #0065cc;
+        box-shadow: var(--box-shadow);
+    }
+
+.btn-eject {
+    background-color: var(--error-color);
+    color: white;
+}
+
+    .btn-eject:hover {
+        background-color: #e53327;
+        box-shadow: var(--box-shadow);
+    }
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
 .error {
-    background-color: #ff0044;
-    padding: 10px;
-    margin: 20px 0;
-    border-radius: 5px;
-    color: #fff;
-    font-weight: bold;
-}
-
-.item-tab {
-    background: #333;
-    border: 2px solid #0ff;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 1.2rem;
-}
-
-.btn-item form {
-    margin-top: 10px;
-}
-
-.btn-depo, .btn-eject {
-    padding: 12px 24px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-depo {
-    background-color: #0ff;
-    color: #1e1e1e;
-}
-
-    .btn-depo:hover {
-        background-color: #00b3b3;
-    }
-
-.btn-eject {
-    background-color: #ff0044;
-    color: #fff;
-}
-
-    .btn-eject:hover {
-        background-color: #cc0033;
-    }
-
-.btn-group button {
-    background-color: #555;
-    padding: 12px 24px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-    .btn-group button:hover {
-        background-color: #0ff;
-    }
-
-.row {
-    display: flex;
-    justify-content: space-between;
+    color: var(--error-color);
+    background-color: rgba(255, 59, 48, 0.1);
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    font-weight: 500;
     margin-bottom: 20px;
 }
 
-.col-sm-8 {
-    width: 65%;
+.col-sm-4 p {
+    background-color: var(--secondary-color);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    margin-bottom: 10px;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
-.col-sm-4 {
-    width: 30%;
-    background-color: #222;
-    padding: 15px;
-    border-radius: 5px;
-    border: 2px solid #0ff;
-    text-align: center;
+@media (max-width: 768px) {
+    .col-sm-4, .col-sm-8 {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
 }
